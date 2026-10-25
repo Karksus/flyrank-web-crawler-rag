@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+title: "FlyRank Web Crawler RAG"
+message: "If you use this software, please cite it as follows:"
+authors:
+  - family-names: "FlyRank"
+    given-names: "Capstone Team"
+version: 0.1.0
+date-released: 2026-10-24
+url: "https://github.com/Karksus/flyrank-web-crawler-rag"
+repository-code: "https://github.com/Karksus/flyrank-web-crawler-rag"
+license: MIT
+keywords:
+  - rag
+  - web-crawler
+  - fastapi
+  - pgvector
+  - ollama
+  - capstone

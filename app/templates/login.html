@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Company Portal RAG Chatbot</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <h1>Company Portal RAG Chatbot</h1>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/auth/register">Register</a>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="container" style="max-width: 400px; margin-top: 2rem;">
+        <section>
+            <h2 style="margin-bottom: 1.5rem; text-align: center;">Login</h2>
+            <form id="loginForm" style="background: white; padding: 2rem; border-radius: 0.75rem; border: 1px solid #e5e7eb;">
+                <div style="margin-bottom: 1rem;">
+                    <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email</label>
+                    <input type="email" id="email" name="email" required style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.375rem;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label for="password" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Password</label>
+                    <input type="password" id="password" name="password" required style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.375rem;">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+                <p style="text-align: center; margin-top: 1rem; color: #6b7280;">
+                    Don't have an account? <a href="/auth/register" style="color: #2563eb;">Register</a>
+                </p>
+            </form>
+            <div id="message" style="margin-top: 1rem; text-align: center;"></div>
+        </section>
+    </main>
+    
+    <script src="/static/js/auth.js"></script>
+</body>
+</html>

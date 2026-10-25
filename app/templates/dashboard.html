@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Company Portal RAG Chatbot</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <h1>Company Portal RAG Chatbot</h1>
+            <div class="nav-links">
+                <a href="/dashboard">Dashboard</a>
+                <a href="/">Logout</a>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="container">
+        <section style="margin-top: 2rem;">
+            <h2 style="margin-bottom: 1rem;">My Company Bots</h2>
+            <div style="background: white; padding: 1.5rem; border-radius: 0.75rem; border: 1px solid #e5e7eb; margin-bottom: 2rem;">
+                <h3 style="margin-bottom: 1rem;">Create New Bot</h3>
+                <form id="createBotForm" style="display: flex; gap: 0.5rem;">
+                    <input type="url" id="url" placeholder="https://example.com" required style="flex: 1; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.375rem;">
+                    <button type="submit" class="btn btn-primary">Create Bot</button>
+                </form>
+                <p style="color: #6b7280; font-size: 0.875rem; margin-top: 0.5rem;">Enter the root URL of a public company website (max 50 pages, depth 2). Crawls politely respecting robots.txt.</p>
+            </div>
+            
+            <div id="bots" style="display: grid; gap: 1rem;">
+                <div style="background: white; padding: 1.5rem; border-radius: 0.75rem; border: 1px solid #e5e7eb; text-align: center; color: #6b7280;">
+                    <p>No bots yet. Create your first company bot above!</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>

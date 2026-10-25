@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Bot - Company Portal RAG Chatbot</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <h1>Company Portal RAG Chatbot</h1>
+            <div class="nav-links">
+                <a href="/dashboard">Dashboard</a>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="container" style="max-width: 600px; margin-top: 2rem;">
+        <section>
+            <h2 style="margin-bottom: 1.5rem;">Create New Company Bot</h2>
+            <form id="createForm" style="background: white; padding: 2rem; border-radius: 0.75rem; border: 1px solid #e5e7eb;">
+                <div style="margin-bottom: 1rem;">
+                    <label for="name" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Bot Name (Optional)</label>
+                    <input type="text" id="name" name="name" placeholder="e.g., Example Bot" style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.375rem;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label for="base_url" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Company Website URL</label>
+                    <input type="url" id="base_url" name="base_url" placeholder="https://example.com" required style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.375rem;">
+                    <small style="color: #6b7280;">Root URL only. Max 50 pages, depth 2. Crawls politely respecting robots.txt.</small>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Create Bot & Start Crawling</button>
+            </form>
+            <div id="message" style="margin-top: 1rem; text-align: center;"></div>
+        </section>
+    </main>
+    
+    <script src="/static/js/companies.js"></script>
+</body>
+</html>

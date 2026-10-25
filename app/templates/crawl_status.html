@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crawling Status - {{ company.name }}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <meta http-equiv="refresh" content="5">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <h1>Company Portal RAG Chatbot</h1>
+            <div class="nav-links">
+                <a href="/dashboard">Dashboard</a>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="container" style="max-width: 600px; margin-top: 2rem;">
+        <section>
+            <h2 style="margin-bottom: 1rem;">{{ company.name }}</h2>
+            <p style="color: #6b7280; margin-bottom: 1.5rem;">{{ company.base_url }}</p>
+            
+            <div style="background: white; padding: 2rem; border-radius: 0.75rem; border: 1px solid #e5e7eb; text-align: center;">
+                {% if company.status == 'crawling' or (crawl_job and crawl_job.status == 'running') %}
+                    <h3 style="color: #2563eb; margin-bottom: 1rem;">🕷️ Crawling in Progress</h3>
+                    <p style="margin-bottom: 1rem;">Crawled {{ crawl_job.pages_crawled if crawl_job else 0 }} / {{ crawl_job.pages_total if crawl_job and crawl_job.pages_total else '?' }} pages</p>
+                    <div style="background: #e5e7eb; height: 8px; border-radius: 4px; overflow: hidden; margin-bottom: 1rem;">
+                        {% if crawl_job and crawl_job.pages_total and crawl_job.pages_total > 0 %}
+                            <div style="background: #2563eb; height: 100%; width: {{ ((crawl_job.pages_crawled / crawl_job.pages_total) * 100)|round }}%;"></div>
+                        {% else %}
+                            <div style="background: #2563eb; height: 100%; width: 50%; animation: pulse 2s infinite;"></div>
+                        {% endif %}
+                    </div>
+                    <p style="color: #6b7280; font-size: 0.875rem;">This page auto-refreshes every 5 seconds...</p>
+                    <div style="margin-top: 1rem; padding: 0.75rem; background: #f9fafb; border-radius: 0.375rem; text-align: left; font-size: 0.875rem; max-height: 150px; overflow-y: auto;">
+                        <strong>Log:</strong><br>
+                        <span style="color: #6b7280;">• Initializing crawler...</span><br>
+                        <span style="color: #6b7280;">• Respecting robots.txt and crawl delay</span><br>
+                        <span style="color: #6b7280;">• Crawling up to {{ crawl_job.pages_total if crawl_job and crawl_job.pages_total else 50 }} pages (max depth 2)</span>
+                    </div>
+                {% elif company.status == 'ready' %}
+                    <h3 style="color: #059669; margin-bottom: 1rem;">✅ Ready!</h3>
+                    <p style="margin-bottom: 1.5rem;">Crawling completed. Your bot is ready to chat.</p>
+                    <a href="/chat/{{ company.id }}" class="btn btn-primary">Start Chatting</a>
+                {% elif company.status == 'failed' %}
+                    <h3 style="color: #dc2626; margin-bottom: 1rem;">❌ Failed</h3>
+                    <p style="margin-bottom: 1rem;">Something went wrong during crawling.</p>
+                    {% if crawl_job.error %}
+                        <p style="color: #6b7280; font-size: 0.875rem; background: #f9fafb; padding: 0.75rem; border-radius: 0.375rem; text-align: left;">{{ crawl_job.error }}</p>
+                    {% endif %}
+                {% else %}
+                    <h3 style="margin-bottom: 1rem;">⏳ Pending</h3>
+                    <p>Crawl will start shortly...</p>
+                {% endif %}
+            </div>
+        </section>
+    </main>
+    
+    <style>
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</body>
+</html>
